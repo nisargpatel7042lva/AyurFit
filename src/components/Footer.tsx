@@ -32,32 +32,65 @@ export default function Footer() {
                 <a href="/ExpertConsultations" className="hover:underline">
                   Expert Consultations
                 </a>
-              </li>
+              </li> 
               <li>
                 <a href="/ProgressTracking" className="hover:underline">
                   Progress Tracking
                 </a>
               </li>
               
-              
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4">Resources</h4>
             <ul className="space-y-2 text-sage-300">
-              <li>Blog</li>
-              <li>Dosha Guide</li>
-              <li>Recipes</li>
-              <li>Research</li>
+            <li>
+                <a href="/Blog" className="hover:underline">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="/DoshaGuide" className="hover:underline">
+                  Dosha Guide
+                </a>
+              </li>
+              <li>
+                <a href="/Recipies" className="hover:underline">
+                  Recipies
+                </a>
+              </li> 
+              <li>
+                <a href="/Research" className="hover:underline">
+                  Research
+                </a>
+              </li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-sage-300">
-              <li>Support</li>
-              <li>Partnerships</li>
-              <li>Careers</li>
-              <li>Press</li>
+              
+            <li>
+                <a href="/Support" className="hover:underline">
+                  Support
+                </a>
+              </li>
+              <li>
+                <a href="/Partnerships" className="hover:underline">
+                  Partnerships
+                </a>
+              </li>
+              <li>
+                <a href="/Careers" className="hover:underline">
+                  Careers
+                </a>
+              </li> 
+              <li>
+                <a href="/Press" className="hover:underline">
+                  Press
+                </a>
+              </li>
+              
             </ul>
           </div>
         </div>
