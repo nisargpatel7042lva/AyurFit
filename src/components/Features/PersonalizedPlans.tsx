@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
+import PersonalizedPlanResult from './results/PersonalizedPlanResult';
 
 interface PersonalizedPlansProps {
   onBack: () => void;
@@ -12,12 +13,16 @@ export default function PersonalizedPlans({ onBack }: PersonalizedPlansProps) {
     dietaryPreferences: '',
     timeCommitment: ''
   });
+  const [showResult, setShowResult] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setShowResult(true);
   };
+
+  if (showResult) {
+    return <PersonalizedPlanResult formData={formData} onBack={() => setShowResult(false)} />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sage-50 via-white to-sage-50 p-8">
@@ -42,6 +47,7 @@ export default function PersonalizedPlans({ onBack }: PersonalizedPlansProps) {
                 value={formData.goals}
                 onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
                 className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
+                required
               >
                 <option value="">Select your goal</option>
                 <option value="weight">Weight Management</option>
@@ -62,6 +68,7 @@ export default function PersonalizedPlans({ onBack }: PersonalizedPlansProps) {
                 className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
                 rows={4}
                 placeholder="Daily routine, work schedule, exercise habits..."
+                required
               />
             </div>
 
@@ -75,6 +82,7 @@ export default function PersonalizedPlans({ onBack }: PersonalizedPlansProps) {
                 className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
                 rows={4}
                 placeholder="Vegetarian, vegan, allergies, etc..."
+                required
               />
             </div>
 
@@ -86,6 +94,7 @@ export default function PersonalizedPlans({ onBack }: PersonalizedPlansProps) {
                 value={formData.timeCommitment}
                 onChange={(e) => setFormData({ ...formData, timeCommitment: e.target.value })}
                 className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
+                required
               >
                 <option value="">Select time commitment</option>
                 <option value="15">15 minutes</option>

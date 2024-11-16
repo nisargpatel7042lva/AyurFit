@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Calendar } from 'lucide-react';
+import { timeZones } from '../../data/timeZones';
 
 interface ExpertConsultationProps {
   onBack: () => void;
@@ -10,15 +11,38 @@ export default function ExpertConsultation({ onBack }: ExpertConsultationProps) 
     consultationType: '',
     preferredDate: '',
     preferredTime: '',
+    timeZone: '',
     primaryConcern: '',
     additionalNotes: ''
   });
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setShowConfirmation(true);
     // Handle form submission
     console.log('Form submitted:', formData);
   };
+
+  if (showConfirmation) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-sage-50 via-white to-sage-50 p-8 flex items-center justify-center">
+        <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full text-center">
+          <Calendar className="h-16 w-16 text-sage-600 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-sage-900 mb-4">Thank You!</h2>
+          <p className="text-sage-700 mb-6">
+            Your consultation has been scheduled. We will connect with you soon to confirm your appointment.
+          </p>
+          <button
+            onClick={onBack}
+            className="bg-sage-600 text-white px-6 py-2 rounded-lg hover:bg-sage-700 transition-colors"
+          >
+            Return to Dashboard
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sage-50 via-white to-sage-50 p-8">
@@ -43,6 +67,7 @@ export default function ExpertConsultation({ onBack }: ExpertConsultationProps) 
                 value={formData.consultationType}
                 onChange={(e) => setFormData({ ...formData, consultationType: e.target.value })}
                 className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
+                required
               >
                 <option value="">Select consultation type</option>
                 <option value="initial">Initial Consultation (60 min)</option>
@@ -62,6 +87,8 @@ export default function ExpertConsultation({ onBack }: ExpertConsultationProps) 
                   value={formData.preferredDate}
                   onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
                   className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
+                  required
+                  min={new Date().toISOString().split('T')[0]}
                 />
               </div>
               <div>
@@ -72,6 +99,7 @@ export default function ExpertConsultation({ onBack }: ExpertConsultationProps) 
                   value={formData.preferredTime}
                   onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
                   className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
+                  required
                 >
                   <option value="">Select time</option>
                   <option value="morning">Morning (9AM - 12PM)</option>
@@ -79,6 +107,25 @@ export default function ExpertConsultation({ onBack }: ExpertConsultationProps) 
                   <option value="evening">Evening (4PM - 8PM)</option>
                 </select>
               </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-sage-700 mb-2">
+                Time Zone
+              </label>
+              <select
+                value={formData.timeZone}
+                onChange={(e) => setFormData({ ...formData, timeZone: e.target.value })}
+                className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
+                required
+              >
+                <option value="">Select your time zone</option>
+                {timeZones.map((zone) => (
+                  <option key={zone.value} value={zone.value}>
+                    {zone.label}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
@@ -91,6 +138,7 @@ export default function ExpertConsultation({ onBack }: ExpertConsultationProps) 
                 className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
                 rows={4}
                 placeholder="Please describe your main health concern..."
+                required
               />
             </div>
 

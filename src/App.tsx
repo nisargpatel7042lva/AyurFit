@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -13,39 +13,9 @@ import HealthAnalysis from './components/Features/HealthAnalysis';
 import PersonalizedPlans from './components/Features/PersonalizedPlans';
 import ExpertConsultation from './components/Features/ExpertConsultation';
 import ProgressTracking from './components/Features/ProgressTracking';
+import AyurvedicChat from './components/AyurvedicChat';
 import { getCurrentUser } from './utils/auth';
 import { AuthState } from './types/auth';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Blog from './components/Resources/Blog';
-import DoshaGuide from './components/Resources/DoshaGuide';
-import Recipes from './components/Resources/Recipes';
-import Research from './components/Resources/Research';
-import Support from './components/Contact/Support';
-import Partnerships from './components/Contact/Partnerships';
-import Careers from './components/Contact/Careers';
-import Press from './components/Contact/Press';
-
-
-// Removed duplicate AppRouter function
-
-
-function AppRouter() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/support" element={<Support />} />
-        <Route path="/partnerships" element={<Partnerships />} />
-        <Route path="/careers" element={<Careers />} />
-        <Route path="/press" element={<Press />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/dosha-guide" element={<DoshaGuide />} />
-        <Route path="/recipes" element={<Recipes />} />
-        <Route path="/research" element={<Research />} />
-      </Routes>
-    </Router>
-  );
-}
-
 
 function App() {
   const [authState, setAuthState] = useState<AuthState>(getCurrentUser());
@@ -69,6 +39,8 @@ function App() {
         return <ExpertConsultation onBack={() => setCurrentFeature(null)} />;
       case 'progress-tracking':
         return <ProgressTracking onBack={() => setCurrentFeature(null)} />;
+      case 'ayurvedic-chat':
+        return <AyurvedicChat onBack={() => setCurrentFeature(null)} />;
       default:
         return null;
     }

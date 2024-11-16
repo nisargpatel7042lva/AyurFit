@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
+import HealthAnalysisResult from './results/HealthAnalysisResult';
 
 interface HealthAnalysisProps {
   onBack: () => void;
@@ -14,12 +15,16 @@ export default function HealthAnalysis({ onBack }: HealthAnalysisProps) {
     digestion: '',
     energy: ''
   });
+  const [showResults, setShowResults] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setShowResults(true);
   };
+
+  if (showResults) {
+    return <HealthAnalysisResult formData={formData} onBack={() => setShowResults(false)} />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sage-50 via-white to-sage-50 p-8">
@@ -68,6 +73,8 @@ export default function HealthAnalysis({ onBack }: HealthAnalysisProps) {
                     onChange={(e) => setFormData({ ...formData, physicalSymptoms: e.target.value })}
                     className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
                     rows={4}
+                    required
+                    placeholder="Describe any physical discomfort, pain, or symptoms..."
                   />
                 </div>
                 <div>
@@ -79,6 +86,8 @@ export default function HealthAnalysis({ onBack }: HealthAnalysisProps) {
                     onChange={(e) => setFormData({ ...formData, mentalState: e.target.value })}
                     className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
                     rows={4}
+                    required
+                    placeholder="Describe your stress levels, mood, and mental clarity..."
                   />
                 </div>
               </>
@@ -95,6 +104,8 @@ export default function HealthAnalysis({ onBack }: HealthAnalysisProps) {
                     onChange={(e) => setFormData({ ...formData, sleepPattern: e.target.value })}
                     className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
                     rows={4}
+                    required
+                    placeholder="Hours of sleep, quality, any disturbances..."
                   />
                 </div>
                 <div>
@@ -106,6 +117,8 @@ export default function HealthAnalysis({ onBack }: HealthAnalysisProps) {
                     onChange={(e) => setFormData({ ...formData, digestion: e.target.value })}
                     className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
                     rows={4}
+                    required
+                    placeholder="Appetite, digestion issues, eating habits..."
                   />
                 </div>
               </>
@@ -121,6 +134,8 @@ export default function HealthAnalysis({ onBack }: HealthAnalysisProps) {
                   onChange={(e) => setFormData({ ...formData, energy: e.target.value })}
                   className="w-full p-3 border border-sage-200 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
                   rows={4}
+                  required
+                  placeholder="Energy patterns, fatigue, peak performance times..."
                 />
               </div>
             )}

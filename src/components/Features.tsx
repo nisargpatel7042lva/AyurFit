@@ -1,4 +1,4 @@
-import { Brain, Heart, Moon, Activity } from 'lucide-react';
+import { Brain, Heart, Moon, Activity, MessageCircle } from 'lucide-react';
 
 interface FeaturesProps {
   onFeatureSelect: (feature: string) => void;
@@ -28,6 +28,12 @@ const features = [
     title: "Progress Tracking",
     description: "Monitor your wellness journey with detailed progress metrics and insights.",
     id: "progress-tracking"
+  },
+  {
+    icon: MessageCircle,
+    title: "AI Ayurvedic Guide",
+    description: "Chat with our AI guide for instant Ayurvedic wisdom and natural remedies.",
+    id: "ayurvedic-chat"
   }
 ];
 
@@ -43,7 +49,7 @@ export default function Features({ onFeatureSelect }: FeaturesProps) {
             Experience the perfect blend of ancient Ayurvedic wisdom and cutting-edge technology
           </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature) => (
             <button
               key={feature.id}
