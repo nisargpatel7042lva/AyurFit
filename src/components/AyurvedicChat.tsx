@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Send, Bot, User, Loader2 } from 'lucide-react';
-import { processAyurvedicQuery } from '../utils/AyurvedicAI';
+import { ArrowLeft, Send, Bot, User, Loader2, AlertCircle } from 'lucide-react';
+import { processAyurvedicQuery } from '../utils/ayurvedicAI';
 
 interface Message {
   type: 'user' | 'bot';
   content: string;
   timestamp: Date;
+  error?: boolean;
 }
 
 interface AyurvedicChatProps {
@@ -52,7 +53,8 @@ export default function AyurvedicChat({ onBack }: AyurvedicChatProps) {
       const botMessage = {
         type: 'bot' as const,
         content: response,
-        timestamp: new Date()
+        timestamp: new Date(),
+        error: response.includes('unavailable') || response.includes('unable')
       };
 
       setMessages(prev => [...prev, botMessage]);
@@ -60,7 +62,8 @@ export default function AyurvedicChat({ onBack }: AyurvedicChatProps) {
       const errorMessage = {
         type: 'bot' as const,
         content: 'I apologize, but I am unable to process your request at the moment. Please try again later.',
-        timestamp: new Date()
+        timestamp: new Date(),
+        error: true
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
@@ -92,11 +95,13 @@ export default function AyurvedicChat({ onBack }: AyurvedicChatProps) {
               >
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    message.type === 'user' ? 'bg-sage-600' : 'bg-sage-100'
+                    message.type === 'user' ? 'bg-sage-600' : message.error ? 'bg-red-100' : 'bg-sage-100'
                   }`}
                 >
                   {message.type === 'user' ? (
                     <User className="h-5 w-5 text-white" />
+                  ) : message.error ? (
+                    <AlertCircle className="h-5 w-5 text-red-600" />
                   ) : (
                     <Bot className="h-5 w-5 text-sage-600" />
                   )}
@@ -105,6 +110,8 @@ export default function AyurvedicChat({ onBack }: AyurvedicChatProps) {
                   className={`rounded-lg p-4 max-w-[80%] ${
                     message.type === 'user'
                       ? 'bg-sage-600 text-white'
+                      : message.error
+                      ? 'bg-red-50 text-red-800'
                       : 'bg-sage-50 text-sage-800'
                   }`}
                 >

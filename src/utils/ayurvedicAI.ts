@@ -1,9 +1,17 @@
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: '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', // Replace with your actual API key
-  dangerouslyAllowBrowser: true
-});
+let openai: OpenAI | null = null;
+
+try {
+  if (import.meta.env.VITE_OPENAI_API_KEY) {
+    openai = new OpenAI({
+      apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+      dangerouslyAllowBrowser: true
+    });
+  }
+} catch (error) {
+  console.error('Failed to initialize OpenAI client:', error);
+}
 
 const SYSTEM_PROMPT = `You are an expert Ayurvedic practitioner with deep knowledge of traditional Ayurvedic medicine, remedies, and lifestyle practices. Your responses should:
 
@@ -23,6 +31,10 @@ Remember to:
 
 export async function processAyurvedicQuery(query: string): Promise<string> {
   try {
+    if (!openai) {
+      return 'The chat feature is currently unavailable. Please try again later.';
+    }
+
     const completion = await openai.chat.completions.create({
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
@@ -36,6 +48,12 @@ export async function processAyurvedicQuery(query: string): Promise<string> {
     return completion.choices[0]?.message?.content || 'I apologize, but I am unable to provide a response at this time.';
   } catch (error) {
     console.error('Error processing Ayurvedic query:', error);
-    throw new Error('Failed to process query');
+    if (error instanceof Error) {
+      if (error.message.includes('API key')) {
+        return 'The chat feature is currently unavailable. Please try again later.';
+      }
+      return 'I apologize, but I am unable to process your request at this moment. Please try again later.';
+    }
+    return 'An unexpected error occurred. Please try again later.';
   }
 }
