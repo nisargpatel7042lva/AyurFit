@@ -1,4 +1,4 @@
-import { Brain, Heart, Moon, Activity, MessageCircle } from 'lucide-react';
+import { Brain, Heart, Moon, Activity, MessageCircle, Smile } from 'lucide-react';
 
 interface FeaturesProps {
   onFeatureSelect: (feature: string) => void;
@@ -34,6 +34,12 @@ const features = [
     title: "AI Ayurvedic Guide",
     description: "Chat with our AI guide for instant Ayurvedic wisdom and natural remedies.",
     id: "ayurvedic-chat"
+  },
+  {
+    icon: Smile,
+    title: "Mood-Based Remedies",
+    description: "Discover personalized Ayurvedic remedies based on your current mood.",
+    id: "mood-remedies"
   }
 ];
 

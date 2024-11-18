@@ -14,6 +14,7 @@ import PersonalizedPlans from './components/Features/PersonalizedPlans';
 import ExpertConsultation from './components/Features/ExpertConsultation';
 import ProgressTracking from './components/Features/ProgressTracking';
 import AyurvedicChat from './components/AyurvedicChat';
+import MoodBasedRemedies from './components/Features/MoodBasedRemedies';
 import { getCurrentUser } from './utils/auth';
 import { AuthState } from './types/auth';
 
@@ -41,6 +42,8 @@ function App() {
         return <ProgressTracking onBack={() => setCurrentFeature(null)} />;
       case 'ayurvedic-chat':
         return <AyurvedicChat onBack={() => setCurrentFeature(null)} />;
+      case 'mood-remedies':
+        return <MoodBasedRemedies onBack={() => setCurrentFeature(null)} />;
       default:
         return null;
     }
