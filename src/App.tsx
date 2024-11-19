@@ -18,6 +18,8 @@ import MoodBasedRemedies from './components/Features/MoodBasedRemedies';
 import { getCurrentUser } from './utils/auth';
 import { AuthState } from './types/auth';
 
+
+
 function App() {
   const [authState, setAuthState] = useState<AuthState>(getCurrentUser());
   const [showSignIn, setShowSignIn] = useState(false);
