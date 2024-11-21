@@ -3,9 +3,9 @@ import { Activity, Calendar, Book, Bell, Heart, Leaf, Moon, Sun } from "lucide-r
 
 const metrics = [
   { label: "Wellness Score", value: "85%", icon: Heart, color: "text-rose-500" },
-  { label: "Meditation Minutes", value: "120", icon: Moon, color: "text-indigo-500" },
-  { label: "Daily Steps", value: "8,547", icon: Activity, color: "text-green-500" },
-  { label: "Herbal Remedies", value: "3", icon: Leaf, color: "text-emerald-500" },
+  { label: "Meditation Minutes", value: "50", icon: Moon, color: "text-indigo-500" },
+  { label: "Daily Steps", value: "2,247", icon: Activity, color: "text-green-500" },
+  { label: "Herbal Remedies", value: "4", icon: Leaf, color: "text-emerald-500" },
 ];
 
 const upcomingSessions = [
