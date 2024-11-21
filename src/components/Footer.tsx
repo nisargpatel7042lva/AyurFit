@@ -71,23 +71,23 @@ export default function Footer() {
             <ul className="space-y-2 text-sage-300">
               
             <li>
-                <a href="/Support" className="hover:underline">
-                  Support
+                <a href="/Facebook" className="hover:underline">
+                  Facebook
                 </a>
               </li>
               <li>
-                <a href="/Partnerships" className="hover:underline">
-                  Partnerships
+                <a href="/PTwitter" className="hover:underline">
+                  Twitter
                 </a>
               </li>
               <li>
-                <a href="/Careers" className="hover:underline">
-                  Careers
+                <a href="/Instagram" className="hover:underline">
+                  Instagram
                 </a>
               </li> 
               <li>
-                <a href="/Press" className="hover:underline">
-                  Press
+                <a href="/LinkedIn" className="hover:underline">
+                  LinkedIn
                 </a>
               </li>
               

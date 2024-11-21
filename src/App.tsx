@@ -15,11 +15,12 @@ import ExpertConsultation from './components/Features/ExpertConsultation';
 import ProgressTracking from './components/Features/ProgressTracking';
 import AyurvedicChat from './components/AyurvedicChat';
 import MoodBasedRemedies from './components/Features/MoodBasedRemedies';
+import Testimonials from './components/Features/Testimonial';
 import { getCurrentUser } from './utils/auth';
 import { AuthState } from './types/auth';
 
 
-
+  
 function App() {
   const [authState, setAuthState] = useState<AuthState>(getCurrentUser());
   const [showSignIn, setShowSignIn] = useState(false);
@@ -56,11 +57,13 @@ function App() {
   }
 
   if (authState.isAuthenticated && authState.user) {
-    return <Dashboard 
-      user={authState.user} 
-      onSignOut={() => setAuthState({ user: null, isAuthenticated: false })}
-      onFeatureSelect={setCurrentFeature}
-    />;
+    return (
+      <Dashboard
+        user={authState.user}
+        onSignOut={() => setAuthState({ user: null, isAuthenticated: false })}
+        onFeatureSelect={setCurrentFeature}
+      />
+    );
   }
 
   if (showSignUp) {
@@ -102,12 +105,14 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
       <Navbar onGetStarted={() => setShowSignIn(true)} />
-      <Hero 
-        onGetStarted={() => setShowSignIn(true)} 
+      <Hero
+        onGetStarted={() => setShowSignIn(true)}
         onLearnMore={() => setShowLearnMore(true)}
       />
+      <Dashboard/>
       <Features onFeatureSelect={setCurrentFeature} />
       <DoshaSection />
+      <Testimonials /> 
       <About />
       <Footer />
     </div>

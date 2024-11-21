@@ -17,3 +17,22 @@
     text-wrap: balance;
   }
 }
+
+/* Animation for the button */
+@keyframes ring {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2); /* Button grows to 120% of its original size */
+  }
+  100% {
+    transform: scale(1); /* Button returns to its original size */
+  }
+}
+
+/* Apply the animation */
+.ring-animation {
+  animation: ring 0.3s ease-in-out;
+}
+
