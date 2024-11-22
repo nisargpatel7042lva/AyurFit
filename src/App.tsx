@@ -19,7 +19,6 @@ import Testimonials from './components/Features/Testimonial';
 import { getCurrentUser } from './utils/auth';
 import { AuthState } from './types/auth';
 
-
   
 function App() {
   const [authState, setAuthState] = useState<AuthState>(getCurrentUser());
