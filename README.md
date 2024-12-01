@@ -96,7 +96,7 @@ We welcome contributions to make Ayur Fit even better!
 Have feedback or ideas to improve Ayur Fit? Feel free to reach out at:  
 📧 **nisargpatel_5565@outlook.com**  
 
-##🌐 Connect With Me
+## 🌐 Connect With Me
 Follow me on social media to stay updated:
 
 GitHub: https://github.com/nisargpatel7042lva
