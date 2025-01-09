@@ -1,4 +1,4 @@
-import SessionCard from './Sessioncards';
+import SessionCard from './SessionCards';
 
 export default function UpcomingSessions() {
   return (

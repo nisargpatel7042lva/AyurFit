@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Search, MapPin, Coffee, Salad, Plus, Minus, ShoppingCart } from 'lucide-react';
-import Checkout from './CheckOut';
+import Checkout from './Checkout';
 
 interface FoodOrderingProps {
   onBack: () => void;

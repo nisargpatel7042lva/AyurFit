@@ -1,7 +1,7 @@
 import { Leaf, LogOut, Calendar, Clock, TrendingUp, Lightbulb } from 'lucide-react';
 import { User } from '../types/auth';
 import { signOut } from '../utils/auth';
-import SessionCard from './dashboard/Sessioncards';
+import SessionCard from './dashboard/SessionCards';
 import WellnessScore from './dashboard/WellnessScore';
 import MeditationTimer from './dashboard/MeditationTimer';
 import DailyTips from './dashboard/DailyTips';
