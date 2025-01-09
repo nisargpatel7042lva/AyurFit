@@ -15,15 +15,19 @@ import ExpertConsultation from './components/Features/ExpertConsultation';
 import ProgressTracking from './components/Features/ProgressTracking';
 import AyurvedicChat from './components/AyurvedicChat';
 import MoodBasedRemedies from './components/Features/MoodBasedRemedies';
+import FoodOrdering from './components/food/FoodOrdering';
 import { getCurrentUser } from './utils/auth';
 import { AuthState } from './types/auth';
+import { useScrollRestoration } from "./utils/useScrollRestoration";
 
 function App() {
+  useScrollRestoration();
   const [authState, setAuthState] = useState<AuthState>(getCurrentUser());
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showLearnMore, setShowLearnMore] = useState(false);
   const [currentFeature, setCurrentFeature] = useState<string | null>(null);
+  const [showFoodOrdering, setShowFoodOrdering] = useState(false);
 
   useEffect(() => {
     const auth = getCurrentUser();
@@ -48,6 +52,10 @@ function App() {
         return null;
     }
   };
+
+  if (showFoodOrdering) {
+    return <FoodOrdering onBack={() => setShowFoodOrdering(false)} />;
+  }
 
   if (currentFeature) {
     return renderFeature();
@@ -99,7 +107,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
-      <Navbar onGetStarted={() => setShowSignIn(true)} />
+      <Navbar 
+        onGetStarted={() => setShowSignIn(true)} 
+        onOrderFood={() => setShowFoodOrdering(true)}
+      />
       <Hero 
         onGetStarted={() => setShowSignIn(true)} 
         onLearnMore={() => setShowLearnMore(true)}
